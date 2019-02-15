@@ -1,0 +1,10 @@
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.csprojAssemblyReference.cache
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.Properties.Resources.resources
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.csproj.GenerateResource.cache
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.csproj.CoreCompileInputs.cache
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.exe.config
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.exe
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.pdb
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.exe
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.pdb
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.MainForm.resources
