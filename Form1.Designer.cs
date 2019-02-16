@@ -32,7 +32,10 @@
             this.btn_SelectFiles = new System.Windows.Forms.Button();
             this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_ProcessFiles = new System.Windows.Forms.Button();
+            this.dgv_report = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_FileList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_report)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv_FileList
@@ -66,16 +69,37 @@
             this.location.HeaderText = "Location";
             this.location.Name = "location";
             // 
+            // btn_ProcessFiles
+            // 
+            this.btn_ProcessFiles.Location = new System.Drawing.Point(533, 399);
+            this.btn_ProcessFiles.Name = "btn_ProcessFiles";
+            this.btn_ProcessFiles.Size = new System.Drawing.Size(124, 37);
+            this.btn_ProcessFiles.TabIndex = 2;
+            this.btn_ProcessFiles.Text = "Extract BOM";
+            this.btn_ProcessFiles.UseVisualStyleBackColor = true;
+            this.btn_ProcessFiles.Click += new System.EventHandler(this.btn_ProcessFiles_Click);
+            // 
+            // dgv_report
+            // 
+            this.dgv_report.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_report.Location = new System.Drawing.Point(293, 108);
+            this.dgv_report.Name = "dgv_report";
+            this.dgv_report.Size = new System.Drawing.Size(363, 237);
+            this.dgv_report.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(673, 450);
+            this.Controls.Add(this.dgv_report);
+            this.Controls.Add(this.btn_ProcessFiles);
             this.Controls.Add(this.btn_SelectFiles);
             this.Controls.Add(this.dgv_FileList);
             this.Name = "MainForm";
             this.Text = "PCF Extractor";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_FileList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_report)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,6 +110,8 @@
         private System.Windows.Forms.Button btn_SelectFiles;
         private System.Windows.Forms.DataGridViewTextBoxColumn filename;
         private System.Windows.Forms.DataGridViewTextBoxColumn location;
+        private System.Windows.Forms.Button btn_ProcessFiles;
+        private System.Windows.Forms.DataGridView dgv_report;
     }
 }
 

@@ -8,3 +8,7 @@ C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.
 C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.exe
 C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.pdb
 C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.MainForm.resources
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.exe.manifest
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\bin\Debug\PCF_Extractor.application
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.exe.manifest
+C:\Users\Jared\source\repos\PCF_Extractor\PCF_Extractor\obj\Debug\PCF_Extractor.application
