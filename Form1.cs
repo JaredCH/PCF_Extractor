@@ -12,8 +12,15 @@ using System.Text.RegularExpressions;
 
 namespace PCF_Extractor
 {
+
     public partial class MainForm : Form
     {
+        string comm = null;
+        string active = "dunno";
+        String lineformatted = null;
+        String piperef = null;
+        string final = null;
+        int previousLength;
 
         public MainForm()
         {
@@ -44,10 +51,8 @@ namespace PCF_Extractor
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Commidity");
-            String comm = null;
-            string active = "no";
-            String lineformatted = null;
-            String piperef = null;
+
+
             try
             {
                 foreach (DataGridViewRow row in dgv_FileList.Rows)
@@ -61,12 +66,12 @@ namespace PCF_Extractor
                         while ((line = streamReader.ReadLine()) != null)
                         {
                             lineformatted = Regex.Replace(line, @"\s+", "%20");
-                                //MessageBox.Show(lineformatted);
-                                if (lineformatted.Contains("PIPELINE-REFERENCE"))
-                                {
-                                    piperef = lineformatted;
-                                    
-                                }
+                            //MessageBox.Show(lineformatted.Substring(0, 3).ToString());
+                            if (lineformatted.Contains("PIPELINE-REFERENCE"))
+                            {
+                                piperef = lineformatted;
+
+                            }
 
                             if (!lineformatted.StartsWith("%20"))
                             {
@@ -77,27 +82,67 @@ namespace PCF_Extractor
                             }
                             if (lineformatted.StartsWith("%20"))
                             {
-                                if (active == "fitting");
-                                        {
-                                    comm = comm + ";" + lineformatted;
-                                    //MessageBox.Show(comm);
-                                }
-
+                                comm = comm + ";" + lineformatted;
+                                final = comm;
+                                //MessageBox.Show(comm);
+                                
                             }
-                            if (!lineformatted.StartsWith("%20"))
+                            if (!lineformatted.Substring(0, 3).Equals("%20"))
                             {
-                                if (active == "fitting")
+                                // MessageBox.Show(comm);
+                                dt.Rows.Add(piperef + ";" + final);
+                                
+                                for (int i = 0; i <= dt.Rows.Count - 1; i++)
                                 {
-                                    dt.Rows.Add(piperef +";" + comm);
-                                    active = "no";
-                                    comm = null;
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace("%20", " ");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace("PIPELINE-REFERENCE ", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" PIPING-SPEC ", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" END-POINT", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" CO-ORDS ", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" INSULATION-ON", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
+                                    if (dt.Rows[i][0].ToString().Equals(";") || dt.Rows[i][0].ToString().Equals(piperef+";") || dt.Rows[i][0].ToString().Contains("FLOW-ARROW") || dt.Rows[i][0].ToString().Contains("REFERENCE-DIMENSION") || dt.Rows[i][0].ToString().Contains("FLOOR-SYMBOL"))
+                                    {
+                                        dt.Rows.Remove(dt.Rows[i]);
+                                    }
+                                }
+                                previousLength = dt.Rows.Count;
+                                for (int i = 0; i < previousLength; i++)
+                                {
+                                    //First, get your split values.
+                                    string[] vals = dt.Rows[i][0].ToString().Split(';');
+
+                                    //only operate on rows that were split into multiples.
+                                    if (vals.Length > 1)
+                                    {
+                                        //Add a  new row for each item parsed from value string
+                                        foreach (string s in vals)
+                                        {
+                                            DataRow newRow = dt.NewRow();
+                                            newRow[0] = dt.Rows[i].ToString();
+                                            newRow[1] = s;
+                                            dt.Rows.Add(newRow);
+                                        }
+                                    }
                                 }
 
+                                //Remove old rows
+                                for (int i = 0; i < previousLength; i++)
+                                {
+                                    dt.Rows.RemoveAt(i);
+                                }
+
+
+                                dgv_report.DataSource = dt;
+                                active = "no";
+                                comm = lineformatted;
                             }
-                            
+
                         }
+
                     }
-                    dgv_report.DataSource = dt;
                 }
             }
             catch { }

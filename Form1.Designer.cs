@@ -84,14 +84,14 @@
             this.dgv_report.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_report.Location = new System.Drawing.Point(293, 108);
             this.dgv_report.Name = "dgv_report";
-            this.dgv_report.Size = new System.Drawing.Size(363, 237);
+            this.dgv_report.Size = new System.Drawing.Size(881, 237);
             this.dgv_report.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 450);
+            this.ClientSize = new System.Drawing.Size(1196, 450);
             this.Controls.Add(this.dgv_report);
             this.Controls.Add(this.btn_ProcessFiles);
             this.Controls.Add(this.btn_SelectFiles);
