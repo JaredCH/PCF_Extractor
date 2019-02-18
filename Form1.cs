@@ -19,7 +19,9 @@ namespace PCF_Extractor
         string active = "dunno";
         String lineformatted = null;
         String piperef = null;
+        String ic = null;
         string final = null;
+        string[] segments;
         int previousLength;
 
         public MainForm()
@@ -57,7 +59,7 @@ namespace PCF_Extractor
             {
                 foreach (DataGridViewRow row in dgv_FileList.Rows)
                 {
-
+                    final = null;
                     const Int32 BufferSize = 128;
                     using (var fileStream = File.OpenRead(row.Cells[1].Value.ToString()))
                     using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
@@ -70,6 +72,11 @@ namespace PCF_Extractor
                             if (lineformatted.Contains("PIPELINE-REFERENCE"))
                             {
                                 piperef = lineformatted;
+
+                            }
+                            if (lineformatted.Contains("ITEM-CODE"))
+                            {
+                                ic = lineformatted;
 
                             }
 
@@ -85,13 +92,10 @@ namespace PCF_Extractor
                                 comm = comm + ";" + lineformatted;
                                 final = comm;
                                 //MessageBox.Show(comm);
-                                
                             }
                             if (!lineformatted.Substring(0, 3).Equals("%20"))
                             {
-                                // MessageBox.Show(comm);
-                                dt.Rows.Add(piperef + ";" + final);
-                                
+                                dt.Rows.Add(piperef + ";" + ic + ";" + final);
                                 for (int i = 0; i <= dt.Rows.Count - 1; i++)
                                 {
                                     dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace("%20", " ");
@@ -102,39 +106,12 @@ namespace PCF_Extractor
                                     dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
                                     dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" INSULATION-ON", "");
                                     dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
-                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" UNIQUE-COMPONENT-IDENTIFIER ", "");
-                                    if (dt.Rows[i][0].ToString().Equals(";") || dt.Rows[i][0].ToString().Equals(piperef+";") || dt.Rows[i][0].ToString().Contains("FLOW-ARROW") || dt.Rows[i][0].ToString().Contains("REFERENCE-DIMENSION") || dt.Rows[i][0].ToString().Contains("FLOOR-SYMBOL"))
+                                    dt.Rows[i][0] = dt.Rows[i][0].ToString().Replace(" DESCRIPTION ", "");
+                                    if (dt.Rows[i][0].ToString().Equals(";;") || dt.Rows[i][0].ToString().Equals(piperef + ";" + ic+";") || dt.Rows[i][0].ToString().Equals(piperef+";;") || dt.Rows[i][0].ToString().Equals(piperef+" "+ic) || dt.Rows[i][0].ToString().Contains("FLOW-ARROW") || dt.Rows[i][0].ToString().Contains("REFERENCE-DIMENSION") || dt.Rows[i][0].ToString().Contains("FLOOR-SYMBOL"))
                                     {
                                         dt.Rows.Remove(dt.Rows[i]);
                                     }
                                 }
-                                previousLength = dt.Rows.Count;
-                                for (int i = 0; i < previousLength; i++)
-                                {
-                                    //First, get your split values.
-                                    string[] vals = dt.Rows[i][0].ToString().Split(';');
-
-                                    //only operate on rows that were split into multiples.
-                                    if (vals.Length > 1)
-                                    {
-                                        //Add a  new row for each item parsed from value string
-                                        foreach (string s in vals)
-                                        {
-                                            DataRow newRow = dt.NewRow();
-                                            newRow[0] = dt.Rows[i].ToString();
-                                            newRow[1] = s;
-                                            dt.Rows.Add(newRow);
-                                        }
-                                    }
-                                }
-
-                                //Remove old rows
-                                for (int i = 0; i < previousLength; i++)
-                                {
-                                    dt.Rows.RemoveAt(i);
-                                }
-
-
                                 dgv_report.DataSource = dt;
                                 active = "no";
                                 comm = lineformatted;

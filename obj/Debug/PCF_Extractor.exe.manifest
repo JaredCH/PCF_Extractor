@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PCF_Extractor.exe" size="13792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PCF_Extractor.exe" size="13280">
       <assemblyIdentity name="PCF_Extractor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ksjsG9Vdt068csiaNvaAl6/zh9TBZRbVsRLFn+dx+CE=</dsig:DigestValue>
+        <dsig:DigestValue>zv/YH1WBacvbu0iW0NOIzQ8xvYfux7jlRZo62m8nIME=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
